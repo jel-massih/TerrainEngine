@@ -264,7 +264,7 @@ bool FontShaderClass::SetShaderParamaters(ID3D11DeviceContext* deviceContext, XM
 	ConstantBufferType* dataPtr;
 	unsigned int bufferNumber;
 	PixelBufferType* dataPtr2;
-	XMFLOAT4X4A tempAlighnedMatrix; 
+	XMFLOAT4X4A tempAlignedMatrix; 
 
 	result = deviceContext->Map(m_constantBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
 	if(FAILED(result))
@@ -274,14 +274,14 @@ bool FontShaderClass::SetShaderParamaters(ID3D11DeviceContext* deviceContext, XM
 
 	dataPtr = (ConstantBufferType*)mappedResource.pData;
 
-	XMStoreFloat4x4A(&tempAlighnedMatrix, worldMatrix);
-	worldMatrix = DirectX::XMMatrixTranspose(XMLoadFloat4x4A(&tempAlighnedMatrix));
+	XMStoreFloat4x4A(&tempAlignedMatrix, worldMatrix);
+	worldMatrix = DirectX::XMMatrixTranspose(XMLoadFloat4x4A(&tempAlignedMatrix));
 
-	XMStoreFloat4x4A(&tempAlighnedMatrix, viewMatrix);
-	viewMatrix = DirectX::XMMatrixTranspose(XMLoadFloat4x4A(&tempAlighnedMatrix));
+	XMStoreFloat4x4A(&tempAlignedMatrix, viewMatrix);
+	viewMatrix = DirectX::XMMatrixTranspose(XMLoadFloat4x4A(&tempAlignedMatrix));
 
-	XMStoreFloat4x4A(&tempAlighnedMatrix, projectionMatix);
-	projectionMatix = DirectX::XMMatrixTranspose(XMLoadFloat4x4A(&tempAlighnedMatrix));
+	XMStoreFloat4x4A(&tempAlignedMatrix, projectionMatix);
+	projectionMatix = DirectX::XMMatrixTranspose(XMLoadFloat4x4A(&tempAlignedMatrix));
 
 	dataPtr->world = worldMatrix;
 	dataPtr->view = viewMatrix;
